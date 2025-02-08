@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tracy?</title>
+    <title>Tracy</title>
     <style>
+        /* Estilos generales (para PC) */
         body {
             margin: 0;
             padding: 0;
@@ -83,6 +84,38 @@
                 transform: translateY(0);
             }
         }
+
+        /* Estilos específicos para móviles (pantallas menores a 600px) */
+        @media (max-width: 600px) {
+            body {
+                height: auto;
+                padding: 20px;
+            }
+
+            .container {
+                padding: 20px;
+                width: 90%;
+                max-width: 100%;
+            }
+
+            .container h1 {
+                font-size: 2rem; /* Tamaño de fuente más pequeño */
+            }
+
+            .container p {
+                font-size: 1.1rem; /* Tamaño de fuente más pequeño */
+            }
+
+            .image-container img {
+                width: 100%; /* La imagen ocupa el 100% del contenedor */
+                max-height: 300px; /* Altura máxima reducida */
+            }
+
+            .btn a {
+                padding: 10px 20px; /* Botones más pequeños */
+                font-size: 0.9rem;
+            }
+        }
     </style>
 </head>
 <body>
@@ -100,6 +133,8 @@
 
     <script>
         const btnNo = document.querySelector("#btn-random");
+
+        // Función para mover el botón aleatoriamente
         function moverAleatoriamente(btn) {
             btn.style.position = "absolute";
             btn.style.fontWeight = "bolder";
@@ -107,7 +142,14 @@
             btn.style.left = Math.floor(Math.random() * 90 + 5) + "%";
         }
 
+        // Evento para PC (mouseenter)
         btnNo.addEventListener("mouseenter", function (e) {
+            moverAleatoriamente(e.target);
+        });
+
+        // Evento para móvil (touchstart)
+        btnNo.addEventListener("touchstart", function (e) {
+            e.preventDefault(); // Evita el comportamiento por defecto del tacto
             moverAleatoriamente(e.target);
         });
     </script>
